@@ -2,26 +2,31 @@
 
 module Parser
   class Analyzer
-    attr_reader :data
+    attr_reader :input_data
 
-    def initialize(data)
-      @data = data
+    def initialize(input_data)
+      @input_data = input_data
     end
 
-    def list_page_views_by_decreasing_order(unique_views: false)
-      sorted_data(unique_views).reduce({}) do |memo, value|
-        memo[value[0]] = 0 unless memo[value[0]]
-        memo[value[0]] += 1
+    def list_page_views_by_decreasing_order(unique_views: false, &block)
+      data(unique_views).reduce({}) do |memo, url_access|
+        url, _ = url_access
+        memo[url] = 0 unless memo[url]
+        memo[url] += 1
         memo
-      end
+      end.sort_by(&by_access).reverse
     end
 
     private
 
-    def sorted_data(unique)
-      return Set.new(data).sort if unique
+    def data(unique)
+      return Set.new(input_data) if unique
 
-      data.sort
+      input_data
+    end
+
+    def by_access
+      proc { |url_access| Array(url_access).last }
     end
   end
 end

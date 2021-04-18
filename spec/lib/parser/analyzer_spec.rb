@@ -22,11 +22,11 @@ RSpec.describe Parser::Analyzer do
     context "not unique" do
       let(:unique) { false }
       let(:result) do
-        {
-          "/about" => 1,
-          "/about/2" => 3,
-          "/about/3" => 4
-        }
+        [
+          ["/about/3",4],
+          ["/about/2",3],
+          ["/about",1]
+        ]
       end
 
       it "return the result" do
@@ -37,11 +37,11 @@ RSpec.describe Parser::Analyzer do
     context "unique" do
       let(:unique) { true }
       let(:result) do
-        {
-          "/about" => 1,
-          "/about/2" => 2,
-          "/about/3" => 3
-        }
+        [
+          ["/about/3",3],
+          ["/about/2",2],
+          ["/about",1]
+        ]
       end
 
       it "return the result" do
