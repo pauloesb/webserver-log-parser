@@ -1,0 +1,12 @@
+Documentation:
+  Enabled: false
+Layout/LineLength:
+  Max: 110
+AllCops:
+  TargetRubyVersion: 3.0.1
+  NewCops: enable
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Metrics/BlockLength:
+  CountComments: false
+  Max: 25
