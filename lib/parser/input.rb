@@ -7,6 +7,9 @@ module Parser
     end
 
     def data
+      [
+        ["/path","0.0.0.0"]
+      ]     
     end
   end
 end
