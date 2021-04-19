@@ -20,9 +20,6 @@ module Parser
 
     def parse(path)
       @parse ||= File.read(path)
-    rescue Errno::ENOENT => e
-      warn "Caught the exception: #{e}"
-      exit(-1)
     end
 
     def normalize(data)

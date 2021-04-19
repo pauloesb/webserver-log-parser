@@ -3,6 +3,7 @@
 require_relative "../lib/parser/analyzer"
 require_relative "../lib/parser/input"
 require_relative "../lib/parser/output"
+require_relative "../lib/parser/parse"
 require "simplecov"
 SimpleCov.start
 
