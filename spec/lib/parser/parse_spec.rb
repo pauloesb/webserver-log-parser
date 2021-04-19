@@ -7,7 +7,7 @@ RSpec.describe Parser::Parse do
 
   describe "#start" do
     context "when is success" do
-      let(:file_path) { "./data/webserver.log" }
+      let(:file_path) { "../data/webserver.log" }
 
       let(:result) do
         [
