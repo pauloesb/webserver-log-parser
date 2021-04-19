@@ -11,6 +11,10 @@
 - This will render the total URL accesses by IP Address and also it will also render the unique acesses to URL also.
 - It also have a validation to verify if the data is correct if it's outside pattern it will raise an error.
 
+## Code Coverage
+
+- 73 / 75 LOC (97.33%) covered. (Simplecov data)
+
 ## Structure
 
 - `Parser::Input` responsible to fetch the log, validate and normalize the data.
