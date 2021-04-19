@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "pry-byebug"
 
 RSpec.describe Parser::Output do
   describe "#initialize" do
