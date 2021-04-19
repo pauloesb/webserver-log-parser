@@ -1,5 +1,10 @@
-require_relative "../lib/parser/input"
+# frozen_string_literal: true
+
 require_relative "../lib/parser/analyzer"
+require_relative "../lib/parser/input"
+require_relative "../lib/parser/output"
+require 'simplecov'
+SimpleCov.start
 
 RSpec.configure do |config|
   original_stderr = $stderr

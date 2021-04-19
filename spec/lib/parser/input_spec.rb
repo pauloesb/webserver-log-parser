@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 RSpec.describe Parser::Input do
   subject { described_class.new("./foobar.log") }
   let(:mock_log) { "/about 0.0.0.0\n/about/2 0.0.0.0\n" }
 
-  describe "data" do
+  describe "#data" do
     context "when file exist" do
       let(:parsed_data) do
         [
-          ["/about","0.0.0.0"],
-          ["/about/2","0.0.0.0"]
+          ["/about", "0.0.0.0"],
+          ["/about/2", "0.0.0.0"]
         ]
       end
 

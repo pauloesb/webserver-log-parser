@@ -1,32 +1,33 @@
 # frozen_string_literal: true
 
+require "set"
+
 module Parser
   class Analyzer
-    attr_reader :input_data
+    attr_reader :data_input
 
-    def initialize(input_data)
-      @input_data = input_data
+    def initialize(data_input)
+      @data_input = data_input
     end
 
-    def list_page_views_by_decreasing_order(unique_views: false, &block)
-      data(unique_views).reduce({}) do |memo, url_access|
-        url, _ = url_access
+    def list_page_views_by_decreasing_order(unique_views)
+      data(unique_views).each_with_object({}) do |url_access, memo|
+        url, = url_access
         memo[url] = 0 unless memo[url]
         memo[url] += 1
-        memo
       end.sort_by(&by_access).reverse
     end
 
     private
 
     def data(unique)
-      return Set.new(input_data) if unique
+      return Set.new(data_input) if unique
 
-      input_data
+      data_input
     end
 
     def by_access
-      proc { |url_access| Array(url_access).last }
+      ->(url_access) { Array(url_access).last }
     end
   end
 end

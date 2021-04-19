@@ -3,8 +3,11 @@ Documentation:
 Layout/LineLength:
   Max: 110
 AllCops:
-  TargetRubyVersion: 3.0.1
+  TargetRubyVersion: 3.0.0
   NewCops: enable
+  Exclude:
+    - 'spec/lib/**/*'
+    - 'spec/lib/*'
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 Metrics/BlockLength:
