@@ -3,7 +3,7 @@
 require_relative "../lib/parser/analyzer"
 require_relative "../lib/parser/input"
 require_relative "../lib/parser/output"
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
 RSpec.configure do |config|
