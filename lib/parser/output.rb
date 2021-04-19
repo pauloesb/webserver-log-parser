@@ -4,9 +4,10 @@ module Parser
   class Output
     attr_reader :analyzer
 
-    def initialize(analyzer, output: $stdout)
+    def initialize(analyzer)
+      argument_error unless argument_valid?(analyzer)
+
       @analyzer = analyzer
-      @output = output
     end
 
     def result
@@ -16,7 +17,7 @@ module Parser
         "\n"
       ].join("\n")
 
-      @output.puts log_analysis
+      puts log_analysis
 
       log_analysis
     end
@@ -39,6 +40,14 @@ module Parser
         result_title_message[unique],
         analyzer.list_page_views_by_decreasing_order(unique).map(&add_space)
       ]
+    end
+
+    def argument_error
+      raise ArgumentError, "Argument is not a Parser::Analyzer object!"
+    end
+
+    def argument_valid?(arg)
+      arg.is_a?(Parser::Analyzer)
     end
   end
 end

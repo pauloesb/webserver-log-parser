@@ -29,5 +29,17 @@ RSpec.describe Parser::Input do
         expect { subject.data }.to raise_error
       end
     end
+
+    context "when data is invalid" do
+      let(:mock_log) { "/about 0.0.0.0\n/about/2 0.0.0.0.\n" }
+
+      before do
+        allow(File).to receive(:read).and_return(mock_log)
+      end
+
+      it "raise exception" do
+        expect { subject.data }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

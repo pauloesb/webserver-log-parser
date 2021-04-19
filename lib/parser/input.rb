@@ -6,6 +6,7 @@ module Parser
 
     WHITESPACE = " "
     NEW_LINE = "\n"
+    DATA_REGEXP_VERIFIER = %r{^(/\w+)+(\s){1}(\d{1,3}\.{1}){3}(\d{1,3}){1}$}
 
     def initialize(file_path)
       @file_path = file_path
@@ -26,8 +27,18 @@ module Parser
 
     def normalize(data)
       @normalize ||= data.split(NEW_LINE).map do |entry|
+        input_invalid(entry) unless data_valid?(entry)
+
         entry.split(WHITESPACE)
       end
+    end
+
+    def input_invalid(line)
+      raise ArgumentError, "File input with invalid data format: #{line}"
+    end
+
+    def data_valid?(data)
+      data.match? DATA_REGEXP_VERIFIER
     end
   end
 end
